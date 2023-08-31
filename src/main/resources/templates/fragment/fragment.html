@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+
+<nav th:fragment="nav"  class="py-2 custom-color">
+  <div class="container d-flex flex-wrap">
+    <ul class="nav me-auto">
+      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2 active" aria-current="page">Home</a></li>
+      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">Features</a></li>
+      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">Pricing</a></li>
+      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">FAQs</a></li>
+      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">About</a></li>
+    </ul>
+    <ul class="nav">
+      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">Login</a></li>
+      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">Sign up</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header th:fragment="header" class="py-3 mb-4 border-bottom">
+  <div class="container align-items-center d-flex flex-wrap justify-content-center">
+    <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+      <svg class="bi me-2" width="40" height="40"><use xlink:href="#bootstrap"></use></svg>
+      <span class="my-class">BLUE SKARLET SKY RECIPES</span>
+    </a>
+    <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
+      <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+    </form>
+  </div>
+</header>
+
+<!-- Footer -->
+<footer th:fragment="footer"  class="text-center text-lg-start custom-footer-color text-footer-color">
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <p class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3 text-secondary font-size-1"></i>Company name
+          </p>
+          <p class = "font-size-05">
+            Here you can use rows and columns to organize your footer content. Lorem ipsum
+            dolor sit amet, consectetur adipisicing elit.
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <p class="text-uppercase fw-bold mb-4 font-size-1">
+            Products
+          </p>
+          <p>
+            <a href="#!" class="text-reset font-size-05">Angular</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset font-size-05">React</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset font-size-05">Vue</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset font-size-05">Laravel</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <p class="text-uppercase fw-bold mb-4 font-size-1">
+            Useful links
+          </p>
+          <p>
+            <a href="#!" class="text-reset font-size-05">Pricing</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset font-size-05">Settings</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset font-size-05">Orders</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset font-size-05">Help</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <p class="text-uppercase fw-bold mb-4 font-size-1">Contact</p>
+          <p><i class="fas fa-home me-3 text-secondary font-size-05"></i> New York, NY 10012, US</p>
+          <p>
+            <i class="fas fa-envelope me-3 text-secondary font-size-05"></i>
+            info@example.com
+          </p>
+          <p><i class="fas fa-phone me-3 text-secondary font-size-05"></i> + 01 234 567 88</p>
+          <p><i class="fas fa-print me-3 text-secondary font-size-05"></i> + 01 234 567 89</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4 copyright-color">
+    © 2021 Copyright:
+    <a class="text-reset fw-bold " href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+</body>
+</html>

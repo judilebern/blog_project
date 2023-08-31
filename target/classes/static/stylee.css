@@ -1,0 +1,125 @@
+body {
+    background-image: linear-gradient(to right top, #082108, #133610, #254c11, #3b630e, #557a02);
+    font-family: Didot, serif;
+    font-size: 1.5em;
+}
+
+main {
+    max-width: 1320px;
+    vertical-align: middle;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.my-class {
+    color: whitesmoke;
+    font-weight: bold;
+    font-family: 'Caveat', cursive;
+    font-size: 2em;
+}
+
+label {
+    color: whitesmoke;
+    font-family: Didot, serif;
+    font-size: 1.5em;
+}
+
+
+.carousel-item > img {
+    max-height: 20em;
+    filter: brightness(35%);
+    border-radius: 1em;
+}
+
+#carouselExampleCaptions {
+    padding-bottom: 2.5em;
+}
+
+
+
+/*header*/
+.custom-color, .custom-footer-color {
+    background-color: #082108;
+
+}
+
+.custom-font-color {
+    color: #61892F;
+    font-weight: bold;
+}
+
+/*.custom-footer-color {
+    background-color: #222629;
+}*/
+
+.text-footer-color {
+    color: #cdd3d3;
+}
+
+.copyright-color {
+    background-color: #071C07;
+    color: #cdd3d3;
+}
+
+
+footer > section > div {
+    padding-top: 1em;
+}
+
+.fw-bold .mb-4 {
+    font-size: 1em;
+}
+
+.card-title {
+    font-size: 1em;
+    border-bottom: #57644a;
+}
+
+.card {
+    background-color: #798561;
+    color: whitesmoke;
+    box-shadow: 10px 10px 10px 10px #263f0e;
+}
+
+.card-text {
+    font-size: 0.5em;
+}
+
+.font-size-05 {
+    font-size: 0.8em;
+}
+
+.font-size-1 {
+    font-size: 1em;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#submit_btn {
+    margin-left: 20px;
+    top:50%;
+    padding-right: 25px;
+    padding-left: 25px;
+    background-color: #082108;
+    color: #fff;
+    border:none;
+    border-radius:10px;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+}
+
+#reset_btn {
+    margin-left: 20px;
+    padding-right: 25px;
+    padding-left: 25px;
+    top:50%;
+    background-color: #082108;
+    color: #fff;
+    border:none;
+    border-radius:10px;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+}
