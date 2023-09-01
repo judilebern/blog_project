@@ -31,8 +31,8 @@ public class Recipe {
     @Column(columnDefinition = "TEXT")
     private String recipeText;
 
-/*    @Lob
-    @Column(name = "image", columnDefinition="bytea")
-    private byte[] image;*/
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "productImage_id")
+    private ProductImage productImage;
 
 }
