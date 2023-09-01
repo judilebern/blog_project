@@ -1,6 +1,7 @@
 package blog_project;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,7 +16,11 @@ public class RecipeService {
         return recipeRepository.findAll();
     }
 
-    public Recipe addRecipe(Recipe newRecipe) {
-        return recipeRepository.save(newRecipe);
+    public void addRecipe(Recipe newRecipe) {
+
+            recipeRepository.save(newRecipe);
+
     }
+
+
 }

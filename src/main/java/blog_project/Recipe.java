@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.tomcat.util.codec.binary.Base64;
 
 @Entity
 @NoArgsConstructor
@@ -30,7 +31,8 @@ public class Recipe {
     @Column(columnDefinition = "TEXT")
     private String recipeText;
 
-    @Lob
+/*    @Lob
     @Column(name = "image", columnDefinition="bytea")
-    private byte[] image;
+    private byte[] image;*/
+
 }
