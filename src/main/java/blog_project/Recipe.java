@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.apache.tomcat.util.codec.binary.Base64;
 
 @Entity
 @NoArgsConstructor
@@ -31,8 +30,7 @@ public class Recipe {
     @Column(columnDefinition = "TEXT")
     private String recipeText;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "productImage_id")
-    private ProductImage productImage;
+    @Column(columnDefinition = "TEXT")
+    private String image;
 
 }

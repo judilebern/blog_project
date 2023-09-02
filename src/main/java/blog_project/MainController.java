@@ -1,9 +1,6 @@
 package blog_project;
 
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,15 +15,15 @@ import java.util.List;
 public class MainController {
 
     private RecipeService recipeService;
-    private ProductImageService productImageService;
 
-    public MainController(RecipeService recipeService, ProductImageService productImageService) {
+    public MainController(RecipeService recipeService) {
         this.recipeService = recipeService;
-        this.productImageService = productImageService;
     }
 
     @GetMapping
-    public String getMainPage() {
+    public String getMainPage(Model model) {
+        List<Recipe> recipeList = recipeService.getAllRecipes();
+        model.addAttribute("recipes", recipeList);
         return "index";
     }
 
@@ -38,24 +35,18 @@ public class MainController {
 
     @PostMapping("/form")
     public String processForm(@RequestParam("prdimage") MultipartFile file, @ModelAttribute Recipe newRecipe) throws IOException {
-        ProductImage image = productImageService.uploadImage(file);
-        newRecipe.setProductImage(image);
+        String image = Base64.encodeBase64String(file.getBytes());
+        newRecipe.setImage(image);
         recipeService.addRecipe(newRecipe);
         return "redirect:/mainPage/form";
     }
 
-    @GetMapping("/download/{fileName}")
-    public ResponseEntity<byte[]> downloadImage(@PathVariable String fileName) {
-        byte[] image = productImageService.downloadImage(fileName);
-        return ResponseEntity.status(HttpStatus.OK).contentType(MediaType.valueOf("image/png")).body(image);
-    }
-
-    @GetMapping("/test")
+/*    @GetMapping("/test")
     public String getRecipes(Model model) {
         List<Recipe> recipeList = recipeService.getAllRecipes();
         model.addAttribute("recipes", recipeList);
         System.out.println(recipeList);
         return "test";
-    }
+    }*/
 
 }
