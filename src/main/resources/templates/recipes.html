@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>VERY GOOD BLOG</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link th:href="@{/stylee.css}" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+            crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+<nav th:insert="fragment/fragment.html :: nav"></nav>
+<header th:insert="fragment/fragment.html :: header"></header>
+
+<main>
+    <h1 style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;">Your recipe list</h1>
+    <table class="table align-middle mb-0 bg-white">
+        <thead class="bg-light">
+        <tr>
+            <th>Title</th>
+            <th>Short Description</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="recipe: *{recipesList}">
+            <td th:text="${recipe.title}"></td>
+            <td th:text="${recipe.shortDescription}"></td>
+            <td th:text="${recipe.category}">
+                <span class="badge badge-success rounded-pill d-inline" th:text="${recipe.category}"></span>
+            </td>
+            <td>
+                <button type="button" class="btn btn-link btn-sm btn-rounded">
+                    Edit
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/mainPage/form}" style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;">Add new recipe</a>
+</main>
+
+<footer th:insert="fragment/fragment.html :: footer"> </footer>
+</body>
+</html>

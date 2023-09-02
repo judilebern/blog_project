@@ -27,6 +27,13 @@ public class MainController {
         return "index";
     }
 
+    @GetMapping("/{id}")
+    public String getRecipeById(@PathVariable Long id, Model model) {
+        Recipe recipe = recipeService.getRecipeById(id);
+        model.addAttribute("recip", recipe);
+        return "recipe";
+    }
+
     @GetMapping("/form")
     public String getForm(Model model) {
         model.addAttribute("newRecipe", new Recipe());
@@ -38,15 +45,14 @@ public class MainController {
         String image = Base64.encodeBase64String(file.getBytes());
         newRecipe.setImage(image);
         recipeService.addRecipe(newRecipe);
-        return "redirect:/mainPage/form";
+        return "redirect:/mainPage/recipes";
     }
 
-/*    @GetMapping("/test")
+    @GetMapping("/recipes")
     public String getRecipes(Model model) {
         List<Recipe> recipeList = recipeService.getAllRecipes();
-        model.addAttribute("recipes", recipeList);
-        System.out.println(recipeList);
-        return "test";
-    }*/
+        model.addAttribute("recipesList", recipeList);
+        return "recipes";
+    }
 
 }

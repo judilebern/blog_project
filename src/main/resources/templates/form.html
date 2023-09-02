@@ -6,6 +6,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link th:href="@{/stylee.css}" rel="stylesheet" />
+    <link th:href="@{/labels.css}" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
@@ -26,27 +27,27 @@
             <input type="text" class="form-control" id="title" th:field="*{title}" placeholder="Some New Title">
         </div>
         <div class="form-group">
-            <label for="short_Description">Example textarea</label>
+            <label for="short_Description">Recipe Description</label>
             <textarea class="form-control" id="short_Description" rows="3" th:field="*{shortDescription}"></textarea>
         </div>
         <div class="form-group">
-            <label for="ingredients">Example textarea</label>
+            <label for="ingredients">Ingredients</label>
             <textarea class="form-control" id="ingredients" rows="3" th:field="*{ingriedients}"></textarea>
         </div>
         <div class="form-group">
-            <label for="category">Example select</label>
+            <label for="category">Category</label>
             <select class="form-control" id="category" th:field="*{category}">
                 <option th:each="categoryOpt: ${T(blog_project.Category).values()}"
                         th:value="${categoryOpt}" th:text="${categoryOpt}" ></option>
             </select>
         </div>
         <div class="form-group">
-            <label for="recipe">Example textarea</label>
+            <label for="recipe">All Recipe</label>
             <textarea class="form-control" id="recipe" rows="10" th:field="*{recipeText}"></textarea>
         </div>
         <div class="form-group">
-            <label class="form-label" for="customFile">Default file input example</label>
-            <input type="file" class="form-control-file" id="customFile" name = "prdimage" accept="image/*"/>
+            <label class="form-label" for="customFile">Recipe Image</label>
+            <input type="file" class="form-control" id="customFile" name = "prdimage" accept="image/*"/>
         </div>
         <br><br>
         <div class = 'buttons'>
@@ -55,7 +56,7 @@
         </div>
 
     </form>
-
+    <a th:href="@{/mainPage/recipes}"  style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;">Go back to recipe list</a>
 </main>
 
 <footer th:insert="fragment/fragment.html :: footer"> </footer>
