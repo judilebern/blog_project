@@ -6,12 +6,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link th:href="@{/stylee.css}" rel="stylesheet" />
+    <link th:href="@{/pagginationButtons.css}" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <nav th:insert="fragment/fragment.html :: nav"></nav>
@@ -22,6 +24,7 @@
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
         <tr>
+            <th scope="col">#</th>
             <th>Title</th>
             <th>Short Description</th>
             <th>Category</th>
@@ -29,20 +32,28 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="recipe: *{recipesList}">
+        <tr th:each="recipe, i: *{recipesList}">
+            <th scope="row" th:text="${recipesList.getPageable().getPageNumber() * recipesList.getPageable().getPageSize() + i.index + 1}"></th>
             <td th:text="${recipe.title}"></td>
             <td th:text="${recipe.shortDescription}"></td>
             <td th:text="${recipe.category}">
                 <span class="badge badge-success rounded-pill d-inline" th:text="${recipe.category}"></span>
             </td>
             <td>
-                <button type="button" class="btn btn-link btn-sm btn-rounded">
-                    Edit
-                </button>
+                <a class="btn btn-secondary" th:href="@{/mainPage/{id}(id=${recipe.id})}">view</a>
             </td>
         </tr>
         </tbody>
     </table>
+
+    <nav class="all-pagination-divs">
+    <div th:if="${recipesList.totalPages > 0}" class="pagination" th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/mainPage/recipes(size=${recipesList.size}, page=${pageNumber})}"
+           th:text="${pageNumber + 1}"
+           th:class="${pageNumber==recipesList.number} ? active"></a>
+    </div>
+    </nav>
+
     <a th:href="@{/mainPage/form}" style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;">Add new recipe</a>
 </main>
 
