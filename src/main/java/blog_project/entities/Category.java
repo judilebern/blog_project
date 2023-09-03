@@ -1,4 +1,4 @@
-package blog_project;
+package blog_project.entities;
 
 public enum Category {
     DINNER,

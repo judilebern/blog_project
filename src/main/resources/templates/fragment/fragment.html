@@ -8,11 +8,11 @@
 <nav th:fragment="nav"  class="py-2 custom-color">
   <div class="container d-flex flex-wrap">
     <ul class="nav me-auto">
-      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2 active" aria-current="page">Home</a></li>
+      <li class="nav-item"><a th:href="@{/mainPage}" class="nav-link custom-font-color px-2 active" aria-current="page">Home</a></li>
       <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">Features</a></li>
       <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">Pricing</a></li>
-      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">About</a></li>
+      <li class="nav-item"><a th:href="@{/mainPage/form}" class="nav-link custom-font-color px-2">Form</a></li>
+      <li class="nav-item"><a th:href="@{/mainPage/recipes}" class="nav-link custom-font-color px-2">Imported Recipes</a></li>
     </ul>
     <ul class="nav">
       <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">Login</a></li>
@@ -23,7 +23,7 @@
 
 <header th:fragment="header" class="py-3 mb-4 border-bottom">
   <div class="container align-items-center d-flex flex-wrap justify-content-center">
-    <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+    <a th:href="@{/mainPage}" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
       <svg class="bi me-2" width="40" height="40"><use xlink:href="#bootstrap"></use></svg>
       <span class="my-class">BLUE SKARLET SKY RECIPES</span>
     </a>

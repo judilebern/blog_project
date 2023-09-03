@@ -37,7 +37,7 @@
         <div class="form-group">
             <label for="category">Category</label>
             <select class="form-control" id="category" th:field="*{category}">
-                <option th:each="categoryOpt: ${T(blog_project.Category).values()}"
+                <option th:each="categoryOpt: ${T(blog_project.entities.Category).values()}"
                         th:value="${categoryOpt}" th:text="${categoryOpt}" ></option>
             </select>
         </div>

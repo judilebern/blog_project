@@ -6,12 +6,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link th:href="@{/stylee.css}" rel="stylesheet" />
+    <link th:href="@{/pagginationButtons.css}" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
+
 </head>
 <body>
 <nav th:insert="fragment/fragment.html :: nav"></nav>
@@ -59,17 +61,25 @@
 
 <section class="p-4 text-center mb-4 w-100">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
-        <div class="col" th:each="recipe: *{recipes}">
-            <div class="card h-100">
+        <div class="col" th:each="recipe, i: *{recipes}">
+            <div class="card h-100" th:onclick="|window.location.href='/mainPage/' +${recipe.id}|">
                 <img th:if="${recipe.image != null}" th:src="@{'data:image/jpeg;base64,'+${recipe.image}}" alt="Recipe Image"/>
                 <div class="card-body">
-                    <h5 class="card-title" th:onclick="|window.location.href='/mainPage/' +${recipe.id}|" th:text="${recipe.title}"></h5>
+                    <h5 class="card-title" th:text="${recipe.title}"></h5>
                     <p class="card-text" th:text="${recipe.shortDescription}"></p>
                 </div>
             </div>
         </div>
     </div>
 </section>
+
+<nav class="all-pagination-divs">
+    <div th:if="${recipes.totalPages > 0}" class="pagination" th:each="pageNumber : ${pageNumbers}">
+        <a th:href="@{/mainPage(size=${recipes.size}, page=${pageNumber})}"
+           th:text="${pageNumber + 1}"
+           th:class="${pageNumber==recipes.number} ? active"></a>
+    </div>
+</nav>
 </main>
 
 

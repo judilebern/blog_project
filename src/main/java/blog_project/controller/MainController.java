@@ -1,5 +1,7 @@
-package blog_project;
+package blog_project.controller;
 
+import blog_project.entities.Recipe;
+import blog_project.service.RecipeService;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
