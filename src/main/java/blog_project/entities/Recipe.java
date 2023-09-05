@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,5 +35,8 @@ public class Recipe {
 
     @Column(columnDefinition = "TEXT")
     private String image;
+
+    @OneToMany(mappedBy = "recipe", orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
 }

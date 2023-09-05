@@ -30,6 +30,33 @@
     <h4>Recipe</h4>
     <p class="text" th:text="${recip.recipeText}"></p>
 
+    <hr class="line">
+    <hr class="line">
+    <h4>Comments</h4>
+
+    <div class = "comments-div" th:each="comment : ${recip.comments}">
+        <section th:text="${#temporals.format(comment.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></section>
+        <section th:text="${comment.text}"></section>
+        <a class="btn btn-secondary" th:href="@{/mainPage/recipes/deleteComment/{id}(id=${comment.id})}">delete</a>
+<!--        <a th:href="@{/mainPage/recipes/showUpdateForm(id=${recipe.id})}" class="btn btn-info">Edit</a>-->
+    </div>
+
+    <hr class="line">
+    <hr class="line">
+
+    <form th:action="@{/mainPage/__${id}__}" th:object="${comment}" method="post">
+        <p>
+            <label>You can write your comment here:
+                <input type="hidden" th:field="*{id}" id="id">
+                <input type="text" th:field="*{text}" />
+            </label>
+        </p>
+        <p>
+            <input type="submit" value="Submit" />
+            <input type="reset" value="Reset" />
+        </p>
+    </form>
+
 </main>
 
 <footer th:insert="fragment/fragment.html :: footer"> </footer>

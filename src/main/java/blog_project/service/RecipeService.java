@@ -25,4 +25,11 @@ public class RecipeService {
             recipeRepository.save(newRecipe);
     }
 
+    public void deleteRecipe(Long id) {
+        recipeRepository.deleteById(id);
+    }
+
+    public Recipe saveRecipe(Recipe recipe) {
+        return recipeRepository.save(recipe);
+    }
 }

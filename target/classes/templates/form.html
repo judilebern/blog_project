@@ -24,15 +24,15 @@
     <form th:action="@{/mainPage/form}" method="post" th:object="${newRecipe}" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Recipe Title</label>
-            <input type="text" class="form-control" id="title" th:field="*{title}" placeholder="Some New Title">
+            <input type="text" class="form-control" id="title" th:field="*{title}" placeholder="Some New Title" required>
         </div>
         <div class="form-group">
             <label for="short_Description">Recipe Description</label>
-            <textarea class="form-control" id="short_Description" rows="3" th:field="*{shortDescription}"></textarea>
+            <textarea class="form-control" id="short_Description" rows="3" th:field="*{shortDescription}" required></textarea>
         </div>
         <div class="form-group">
             <label for="ingredients">Ingredients</label>
-            <textarea class="form-control" id="ingredients" rows="3" th:field="*{ingriedients}"></textarea>
+            <textarea class="form-control" id="ingredients" rows="3" th:field="*{ingriedients}" required></textarea>
         </div>
         <div class="form-group">
             <label for="category">Category</label>
@@ -43,11 +43,11 @@
         </div>
         <div class="form-group">
             <label for="recipe">All Recipe</label>
-            <textarea class="form-control" id="recipe" rows="10" th:field="*{recipeText}"></textarea>
+            <textarea class="form-control" id="recipe" rows="10" th:field="*{recipeText}" required></textarea>
         </div>
         <div class="form-group">
             <label class="form-label" for="customFile">Recipe Image</label>
-            <input type="file" class="form-control" id="customFile" name = "prdimage" accept="image/*"/>
+            <input type="file" class="form-control" id="customFile" name = "prdimage" accept="image/*" required/>
         </div>
         <br><br>
         <div class = 'buttons'>

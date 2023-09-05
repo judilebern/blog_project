@@ -8,17 +8,16 @@ CREATE TABLE recipe
     CONSTRAINT recipe_pkey PRIMARY KEY (id)
 );
 
-CREATE TABLE product_image
+CREATE TABLE comment
 (
-    id        bigserial NOT NULL,
-    imagedata oid NULL,
-    "name"    varchar(255) NULL,
-    "type"    varchar(255) NULL,
-    CONSTRAINT product_image_pkey PRIMARY KEY (id)
+    id     integer NOT NULL,,
+    text varchar(255),
+    recipe_id  bigint,
+    dateTime TIMESTAMP,
+    CONSTRAINT recipe_pkey PRIMARY KEY (id)
 );
 
-
-alter table if exists product_image
-    add constraint fk_product_image
+alter table if exists comment
+    add constraint fk_comment_recipe
     foreign key (recipe_id)
     references recipe;
