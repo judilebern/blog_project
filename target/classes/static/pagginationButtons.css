@@ -1,0 +1,21 @@
+.pagination {
+    display: inline-block;
+}
+
+.all-pagination-divs {
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+}
+.pagination a {
+    color: #bebebe;
+    float: left;
+    padding: 5px 5px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: gray;
+    color: white;
+    border-radius: 2px;
+}

@@ -1,0 +1,9 @@
+blog_project\entities\Category.class
+blog_project\service\CommentService.class
+blog_project\repo\RecipeRepository.class
+blog_project\BlogProjectApplication.class
+blog_project\repo\CommentRepository.class
+blog_project\controller\MainController.class
+blog_project\entities\Comment.class
+blog_project\entities\Recipe.class
+blog_project\service\RecipeService.class
