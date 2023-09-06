@@ -17,7 +17,7 @@
 </head>
 <body>
 <nav th:insert="~{fragment/fragment.html :: nav}"></nav>
-<header th:insert="fragment/fragment.html :: header"></header>
+<header th:insert="~{fragment/fragment.html :: header}"></header>
 
 <main>
     <h1 style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;">Your recipe list</h1>
@@ -59,6 +59,6 @@
     <a th:href="@{/mainPage/form}" style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;">Add new recipe</a>
 </main>
 
-<footer th:insert="fragment/fragment.html :: footer"> </footer>
+<footer th:insert="~{fragment/fragment.html :: footer}"> </footer>
 </body>
 </html>

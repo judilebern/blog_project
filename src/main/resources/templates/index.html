@@ -17,7 +17,7 @@
 </head>
 <body>
 <nav th:insert="~{fragment/fragment.html :: nav}"></nav>
-<header th:insert="fragment/fragment.html :: header"></header>
+<header th:insert="~{fragment/fragment.html :: header}"></header>
 
 <main>
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
@@ -83,6 +83,6 @@
 </main>
 
 
-<footer th:insert="fragment/fragment.html :: footer"> </footer>
+<footer th:insert="~{fragment/fragment.html :: footer}"> </footer>
 </body>
 </html>

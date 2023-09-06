@@ -17,7 +17,7 @@
 <body>
 
 <nav th:insert="~{fragment/fragment.html :: nav}"></nav>
-<header th:insert="fragment/fragment.html :: header"></header>
+<header th:insert="~{fragment/fragment.html :: header}"></header>
 
 <main>
 
@@ -57,6 +57,6 @@
     <a th:href="@{/mainPage/recipes}"  style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;">Go back to recipe list</a>
 </main>
 
-<footer th:insert="fragment/fragment.html :: footer"> </footer>
+<footer th:insert="~{fragment/fragment.html :: footer}"> </footer>
 </body>
 </html>
