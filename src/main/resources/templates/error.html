@@ -1,0 +1,14 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+Some error occurred<br>
+<span th:text="'Time: ' + ${#dates.format(#dates.createNow(), 'yyyy-MMM-dd  HH:mm:ss.SSS')}"></span><br>
+<span th:text="'Error ID: ' + ${errorId}"></span>
+
+</body>
+</html>
