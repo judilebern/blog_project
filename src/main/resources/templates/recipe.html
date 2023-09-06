@@ -38,7 +38,7 @@
         <section th:text="${#temporals.format(comment.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></section>
         <section th:text="${comment.text}"></section>
         <a class="btn btn-secondary" th:href="@{/mainPage/recipes/deleteComment/{id}(id=${comment.id})}">delete</a>
-<!--        <a th:href="@{/mainPage/recipes/showUpdateForm(id=${recipe.id})}" class="btn btn-info">Edit</a>-->
+        <a th:href="@{/mainPage/recipes/commentEdit(id=${comment.id})}" class="btn btn-info">Update</a>
     </div>
 
     <hr class="line">

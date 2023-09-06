@@ -128,4 +128,18 @@ public class MainController {
         return "redirect:/mainPage";
     }
 
+    @GetMapping("/recipes/commentEdit")
+    public ModelAndView showCommentForm(@RequestParam Long id) {
+        ModelAndView mav = new ModelAndView("recipe-comment-edit");
+        Comment comment = commentService.findCommentById(id);
+        mav.addObject("employee", comment);
+        return mav;
+    }
+
+    @PostMapping("/recipes/saveComment")
+    public String saveComment(@ModelAttribute Comment comment) {
+        comment.setUpdatedDateTime(LocalDateTime.now());
+        commentService.addCommentToRecipe(comment);
+        return "redirect:/mainPage/recipes";
+    }
 }
