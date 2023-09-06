@@ -24,15 +24,18 @@
     <form th:action="@{/mainPage/form}" method="post" th:object="${newRecipe}" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title">Recipe Title</label>
-            <input type="text" class="form-control" id="title" th:field="*{title}" placeholder="Some New Title" required>
+            <input type="text" class="form-control" id="title" th:field="*{title}" placeholder="Some New Title">
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('title')}" th:errors="*{title}" th:text="${#fields.hasErrors('title')}"  ></div>
         </div>
         <div class="form-group">
             <label for="short_Description">Recipe Description</label>
-            <textarea class="form-control" id="short_Description" rows="3" th:field="*{shortDescription}" required></textarea>
+            <textarea class="form-control" id="short_Description" rows="3" th:field="*{shortDescription}"></textarea>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('shortDescription')}" th:errors="*{shortDescription}" th:text="${#fields.hasErrors('shortDescription')}"  ></div>
         </div>
         <div class="form-group">
             <label for="ingredients">Ingredients</label>
-            <textarea class="form-control" id="ingredients" rows="3" th:field="*{ingriedients}" required></textarea>
+            <textarea class="form-control" id="ingredients" rows="3" th:field="*{ingriedients}"></textarea>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('ingriedients')}" th:errors="*{ingriedients}" th:text="${#fields.hasErrors('ingriedients')}"  ></div>
         </div>
         <div class="form-group">
             <label for="category">Category</label>
@@ -43,11 +46,13 @@
         </div>
         <div class="form-group">
             <label for="recipe">All Recipe</label>
-            <textarea class="form-control" id="recipe" rows="10" th:field="*{recipeText}" required></textarea>
+            <textarea class="form-control" id="recipe" rows="10" th:field="*{recipeText}"></textarea>
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('recipeText')}" th:errors="*{recipeText}" th:text="${#fields.hasErrors('recipeText')}"  ></div>
         </div>
         <div class="form-group">
             <label class="form-label" for="customFile">Recipe Image</label>
-            <input type="file" class="form-control" id="customFile" name = "prdimage" accept="image/*" required/>
+            <input type="file" class="form-control" id="customFile" name = "prdimage" accept="image/*" />
+            <div class="alert alert-warning" th:if="${#fields.hasErrors('image')}" th:errors="*{image}" th:text="${#fields.hasErrors('image')}"  ></div>
         </div>
         <br><br>
         <div class = 'buttons'>

@@ -1,6 +1,8 @@
 package blog_project.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,12 +19,15 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "{Recipe.Title.NotEmpty}")
     @Column(columnDefinition = "TEXT")
     private String title;
 
+    @NotBlank(message = "{Recipe.Description.NotEmpty}")
     @Column(columnDefinition = "TEXT")
     private String shortDescription;
 
+    @NotBlank(message = "{Recipe.Ingredients.NotEmpty}")
     @Column(columnDefinition = "TEXT")
     private String ingriedients;
 
@@ -30,9 +35,11 @@ public class Recipe {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    @NotBlank(message = "{Recipe.Text.NotEmpty}")
     @Column(columnDefinition = "TEXT")
     private String recipeText;
 
+    @NotBlank(message = "{Recipe.Image.NotEmpty}")
     @Column(columnDefinition = "TEXT")
     private String image;
 

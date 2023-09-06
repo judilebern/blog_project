@@ -4,6 +4,7 @@ import blog_project.entities.Comment;
 import blog_project.entities.Recipe;
 import blog_project.service.CommentService;
 import blog_project.service.RecipeService;
+import jakarta.validation.Valid;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -66,7 +68,10 @@ public class MainController {
     }
 
     @PostMapping("/form")
-    public String processForm(@RequestParam("prdimage") MultipartFile file, @ModelAttribute Recipe newRecipe) throws IOException {
+    public String processForm(@Valid @ModelAttribute("newRecipe") Recipe newRecipe, BindingResult result, @RequestParam("prdimage") MultipartFile file) throws IOException {
+        if(result.hasErrors()) {
+            return "form";
+        }
         String image = Base64.encodeBase64String(file.getBytes());
         newRecipe.setImage(image);
         recipeService.addRecipe(newRecipe);
