@@ -68,18 +68,16 @@ public class MainController {
     }
 
     @PostMapping("/form")
-    public String processForm(@Valid @ModelAttribute("newRecipe") Recipe newRecipe, BindingResult result, @RequestParam("prdimage") MultipartFile file) throws IOException {
-        if(result.hasErrors()) {
-            return "form";
-        }
+    public String processForm(@RequestParam("prdimage") MultipartFile file, @ModelAttribute Recipe newRecipe) throws IOException {
         String image = Base64.encodeBase64String(file.getBytes());
         newRecipe.setImage(image);
+        newRecipe.setDateTime(LocalDateTime.now());
         recipeService.addRecipe(newRecipe);
         return "redirect:/mainPage/recipes";
     }
 
     @PostMapping("/{id}")
-    public String addCommentToRecipe(@PathVariable Long id, Comment comment, Model model) {
+    public String addCommentToRecipe(@PathVariable Long id, Comment comment) {
         Recipe recipe = recipeService.getRecipeById(id);
         comment.setRecipe(recipe);
         comment.setDateTime(LocalDateTime.now());
@@ -106,38 +104,40 @@ public class MainController {
     }
 
     @GetMapping("/recipes/delete/{id}")
-    public String deleteUser(@PathVariable("id") long id, Model model) {
+    public String deleteRecipe(@PathVariable("id") long id) {
         recipeService.deleteRecipe(id);
         return "redirect:/mainPage/recipes";
     }
 
     @GetMapping("recipes/showUpdateForm")
-    public ModelAndView showUpdateForm(@RequestParam Long id) {
+    public ModelAndView showUpdateRecipeForm(@RequestParam Long id) {
         ModelAndView mav = new ModelAndView("edit_form");
         Recipe recipe = recipeService.getRecipeById(id);
-        mav.addObject("employee", recipe);
+        mav.addObject("recipeee", recipe);
         return mav;
     }
 
-    @PostMapping("/recipes/saveEmployee")
-    public String saveEmployee(@RequestParam("prdimage") MultipartFile file, @ModelAttribute Recipe recipe) throws IOException {
+    @PostMapping("/recipes/saveUpdatedRecipe")
+    public String saveUpdatedRecipe(@RequestParam("prdimage") MultipartFile file, @ModelAttribute Recipe recipe) throws IOException {
         String image = Base64.encodeBase64String(file.getBytes());
         recipe.setImage(image);
+        recipe.setUpdatedDateTime(LocalDateTime.now());
         recipeService.saveRecipe(recipe);
         return "redirect:/mainPage/recipes";
     }
 
     @GetMapping("/recipes/deleteComment/{id}")
-    public String deleteComment(@PathVariable("id") long id, Model model) {
+    public String deleteComment(@PathVariable("id") long id) {
+        Comment comment = commentService.findCommentById(id);
         commentService.deleteCommentById(id);
-        return "redirect:/mainPage";
+        return "redirect:/mainPage/"+ comment.getRecipe().getId();
     }
 
     @GetMapping("/recipes/commentEdit")
     public ModelAndView showCommentForm(@RequestParam Long id) {
         ModelAndView mav = new ModelAndView("recipe-comment-edit");
         Comment comment = commentService.findCommentById(id);
-        mav.addObject("employee", comment);
+        mav.addObject("recipeee", comment);
         return mav;
     }
 
@@ -145,6 +145,6 @@ public class MainController {
     public String saveComment(@ModelAttribute Comment comment) {
         comment.setUpdatedDateTime(LocalDateTime.now());
         commentService.addCommentToRecipe(comment);
-        return "redirect:/mainPage/recipes";
+        return "redirect:/mainPage/" + comment.getRecipe().getId();
     }
 }

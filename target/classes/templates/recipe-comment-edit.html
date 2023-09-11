@@ -22,7 +22,7 @@
 
     <hr class="line">
     <hr class="line">
-    <form th:action="@{/mainPage/recipes/saveComment}" th:object="${employee}" method="post">
+    <form th:action="@{/mainPage/recipes/saveComment}" th:object="${recipeee}" method="post">
         <p>
             <label>You can write your comment here:
                 <input type="hidden" th:field="*{id}" id="id">
@@ -32,8 +32,7 @@
             </label>
         </p>
         <p>
-            <input type="submit" value="Submit" />
-            <input type="reset" value="Reset" />
+            <input type="submit" id="submit_btn" value="Submit" />
         </p>
     </form>
 

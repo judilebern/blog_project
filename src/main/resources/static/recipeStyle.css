@@ -35,3 +35,116 @@ h4 {
 p {
     padding: 0.5em;
 }
+
+.dates-div {
+    display: flex;
+    font-size: 1em;
+    font-style: italic;
+    justify-content: flex-end;
+    margin: 0em;
+}
+
+.recipe-upload-date {
+    margin: 0em;
+    padding: 0em;
+}
+
+.comments-div {
+    border: 5px double #071C07;
+    padding: 15px;
+    margin: 5px;
+    display: grid;
+    grid-template-columns: 0.3fr auto 0.2fr;
+    grid-template-rows: 2.5em 2.5em 0.1fr auto;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    grid-template-areas:
+    "startdate-text dateNumber Edit"
+    "update-date-text update-date-number Delete"
+    "User User User"
+    "Comment Comment Comment";
+}
+
+.startdate-text {
+    grid-area: startdate-text;
+    display: flex;
+    font-size: 0.8em;
+    font-style: italic;
+    justify-content: flex-start;
+    margin: 0em;
+    padding: 0em;
+}
+
+.dateNumber {
+    grid-area: dateNumber;
+    display: flex;
+    font-size: 0.8em;
+    font-style: italic;
+    justify-content: flex-start;
+    margin: 0em;
+    padding: 0em;
+}
+
+.update-date-text {
+    grid-area: update-date-text;
+    display: flex;
+    font-size: 0.8em;
+    font-style: italic;
+    justify-content: flex-start;
+    margin: 0em;
+    padding: 0em;
+}
+
+.update-date-number {
+    grid-area: update-date-number;
+    display: flex;
+    font-size: 0.8em;
+    font-style: italic;
+    justify-content: flex-start;
+    margin: 0em;
+    padding: 0em;
+}
+
+.Edit {
+    grid-area: Edit;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.Delete {
+    grid-area: Delete;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#edit{
+    margin-left: 20px;
+    top:50%;
+    padding-right: 25px;
+    padding-left: 25px;
+    background-color: #082108;
+    color: #fff;
+    border:none;
+    border-radius:10px;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+}
+
+#delete {
+    margin-left: 20px;
+    top:50%;
+    padding-right: 25px;
+    padding-left: 25px;
+    background-color: #082108;
+    color: #fff;
+    border:none;
+    border-radius:10px;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+}
+
+.User { grid-area: User; }
+
+.Comment { grid-area: Comment; }
+
+

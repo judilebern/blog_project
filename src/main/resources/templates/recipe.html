@@ -21,12 +21,20 @@
 <main>
 
     <div><img th:if="${recip.image != null}" th:src="@{'data:image/jpeg;base64,'+${recip.image}}" alt="Recipe Image"/></div>
+    <div class="dates-div">
+        <p class = "recipe-upload-date" th:if="${recip.dateTime != null}"> Recipe upload date: </p>
+        <p class = "recipe-upload-date" th:text="${#temporals.format(recip.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></p>
+    </div>
+    <div class="dates-div">
+        <p class = "recipe-upload-date" th:if="${recip.updatedDateTime != null}">Recipe last edit date: </p>
+        <p class = "recipe-upload-date" th:text="${#temporals.format(recip.updatedDateTime, 'yyyy-MM-dd HH:mm:ss')}"></p>
+    </div>
     <h3 th:text="${recip.title}"></h3>
     <hr class="line">
     <p class="short-description"><i th:text="${recip.shortDescription}"></i></p>
     <hr class="line">
     <h4>Ingredients </h4>
-    <p class="ingriedients" th:text="${recip.ingriedients}"></p>
+    <p class="ingriedients" th:utext="${recip.ingriedients}"></p>
     <h4>Recipe</h4>
     <p class="text" th:text="${recip.recipeText}"></p>
 
@@ -35,10 +43,38 @@
     <h4>Comments</h4>
 
     <div class = "comments-div" th:each="comment : ${recip.comments}">
-        <section th:text="${#temporals.format(comment.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></section>
-        <section th:text="${comment.text}"></section>
-        <a class="btn btn-secondary" th:href="@{/mainPage/recipes/deleteComment/{id}(id=${comment.id})}">delete</a>
-        <a th:href="@{/mainPage/recipes/commentEdit(id=${comment.id})}" class="btn btn-info">Update</a>
+        <div class="Delete">
+            <a class="btn btn-info" id="delete" th:href="@{/mainPage/recipes/deleteComment/{id}(id=${comment.id})}">Delete</a>
+        </div>
+
+        <div class="Edit">
+            <a th:href="@{/mainPage/recipes/commentEdit(id=${comment.id})}" id="edit" class="btn btn-info">Edit</a>
+        </div>
+
+        <div class="startdate-text">
+            <p id="dateText">Comment entered date: </p>
+        </div>
+
+        <div class="dateNumber">
+            <p id="date" th:text="${#temporals.format(comment.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></p>
+        </div>
+
+        <div class="User">
+            <p id="pName">Some Person</p>
+        </div>
+
+        <div class="update-date-text">
+            <p id="upDateText" th:if="${comment.updatedDateTime != null}">Comment update date: </p>
+        </div>
+
+        <div class="update-date-number">
+        <p id="upDate" th:text="${#temporals.format(comment.updatedDateTime, 'yyyy-MM-dd HH:mm:ss')}"></p>
+        </div>
+
+        <div class="Comment">
+            <section id="comment" th:text="${comment.text}"></section>
+        </div>
+
     </div>
 
     <hr class="line">
@@ -48,12 +84,11 @@
         <p>
             <label>You can write your comment here:
                 <input type="hidden" th:field="*{id}" id="id">
-                <input type="text" th:field="*{text}" />
+                <textarea class="form-control z-depth-1" id="exampleFormControlTextarea6" rows="3" placeholder="Write something here..." th:field="*{text}"></textarea>
             </label>
         </p>
         <p>
-            <input type="submit" value="Submit" />
-            <input type="reset" value="Reset" />
+            <input type="submit" id="submit_btn" value="Submit" />
         </p>
     </form>
 

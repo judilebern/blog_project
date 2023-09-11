@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,10 @@ public class Recipe {
     @NotBlank(message = "{Recipe.Image.NotEmpty}")
     @Column(columnDefinition = "TEXT")
     private String image;
+
+    private LocalDateTime dateTime;
+
+    private LocalDateTime updatedDateTime;
 
     @OneToMany(mappedBy = "recipe", orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();

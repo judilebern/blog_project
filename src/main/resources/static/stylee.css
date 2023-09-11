@@ -30,6 +30,11 @@ label {
     max-height: 20em;
     filter: brightness(35%);
     border-radius: 1em;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    object-fit: cover;
 }
 
 #carouselExampleCaptions {

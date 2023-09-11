@@ -40,9 +40,9 @@
                 <span class="badge badge-success rounded-pill d-inline" th:text="${recipe.category}"></span>
             </td>
             <td>
-                <a class="btn btn-secondary" th:href="@{/mainPage/{id}(id=${recipe.id})}">view</a>
-                <a class="btn btn-secondary" th:href="@{/mainPage/recipes/delete/{id}(id=${recipe.id})}">delete</a>
-                <a th:href="@{/mainPage/recipes/showUpdateForm(id=${recipe.id})}" class="btn btn-info">Update</a>
+                <a class="btn btn-info" th:href="@{/mainPage/{id}(id=${recipe.id})}">View</a>
+                <a class="btn btn-info" th:href="@{/mainPage/recipes/delete/{id}(id=${recipe.id})}">Delete</a>
+                <a th:href="@{/mainPage/recipes/showUpdateForm(id=${recipe.id})}" class="btn btn-info">Edit</a>
             </td>
         </tr>
         </tbody>
