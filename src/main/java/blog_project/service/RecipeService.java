@@ -1,5 +1,6 @@
 package blog_project.service;
 
+import blog_project.entities.Category;
 import blog_project.entities.Recipe;
 import blog_project.repo.RecipeRepository;
 import org.springframework.data.domain.Page;
@@ -37,5 +38,9 @@ public class RecipeService {
 
     public List<Recipe> filterByName(String name) {
         return recipeRepository.findRecipeByTitleContainingIgnoreCase(name);
+    }
+
+    public List<Recipe> filterByCategory(Category category) {
+        return recipeRepository.findRecipeByCategory(category);
     }
 }

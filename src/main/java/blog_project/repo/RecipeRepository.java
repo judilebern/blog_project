@@ -1,5 +1,6 @@
 package blog_project.repo;
 
+import blog_project.entities.Category;
 import blog_project.entities.Recipe;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,5 +17,7 @@ JpaRepository extends ListPagingAndSortingRepository and knows how to handle pag
     Page<Recipe> findAll(Pageable pageable);
 
     List<Recipe> findRecipeByTitleContainingIgnoreCase(String title);
+
+    List<Recipe> findRecipeByCategory(Category category);
 
 }

@@ -59,6 +59,20 @@
     </button>
 </div>
 
+    <hr class="line">
+    <hr class="line">
+
+    <form th:action="@{/mainPage/filterByCategory}" method="get">
+    <select class="form-control" id="category" name="categoryOpt">
+        <option th:each="categoryOpt: ${T(blog_project.entities.Category).values()}"
+                th:value="${categoryOpt}" th:text="${categoryOpt}" ></option>
+    </select>
+        <button type="submit">Apply</button>
+    </form>
+
+    <hr class="line">
+    <hr class="line">
+
 <section class="p-4 text-center mb-4 w-100">
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-3">
         <div class="col" th:each="recipe, i: *{recipes}">

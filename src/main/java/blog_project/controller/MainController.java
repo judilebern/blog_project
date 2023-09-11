@@ -1,5 +1,6 @@
 package blog_project.controller;
 
+import blog_project.entities.Category;
 import blog_project.entities.Comment;
 import blog_project.entities.Recipe;
 import blog_project.service.CommentService;
@@ -151,6 +152,13 @@ public class MainController {
     @GetMapping("/filterByTitle")
     public String filterByTitle(@RequestParam String keyword, Model model) {
         List<Recipe> recipes = recipeService.filterByName(keyword);
+        model.addAttribute("recipes", recipes);
+        return "index";
+    }
+
+    @GetMapping("/filterByCategory")
+    public String filterByCategory(@RequestParam("categoryOpt") Category category, Model model) {
+        List<Recipe> recipes = recipeService.filterByCategory(category);
         model.addAttribute("recipes", recipes);
         return "index";
     }
