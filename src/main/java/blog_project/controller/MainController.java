@@ -147,4 +147,11 @@ public class MainController {
         commentService.addCommentToRecipe(comment);
         return "redirect:/mainPage/" + comment.getRecipe().getId();
     }
+
+    @GetMapping("/filterByTitle")
+    public String filterByTitle(@RequestParam String keyword, Model model) {
+        List<Recipe> recipes = recipeService.filterByName(keyword);
+        model.addAttribute("recipes", recipes);
+        return "index";
+    }
 }

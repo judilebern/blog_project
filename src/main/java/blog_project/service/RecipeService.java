@@ -6,6 +6,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RecipeService {
     private RecipeRepository recipeRepository;
@@ -31,5 +33,9 @@ public class RecipeService {
 
     public Recipe saveRecipe(Recipe recipe) {
         return recipeRepository.save(recipe);
+    }
+
+    public List<Recipe> filterByName(String name) {
+        return recipeRepository.findRecipeByTitleContainingIgnoreCase(name);
     }
 }
