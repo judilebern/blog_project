@@ -20,15 +20,15 @@
 <header th:insert="~{fragment/fragment.html :: header}"></header>
 
 <main>
-    <h1 style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;">Your recipe list</h1>
+    <h1 style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;" th:text="#{List}">Your recipe list</h1>
     <table class="table align-middle mb-0 bg-white">
         <thead class="bg-light">
         <tr>
             <th scope="col">#</th>
-            <th>Title</th>
-            <th>Short Description</th>
-            <th>Category</th>
-            <th>Actions</th>
+            <th th:text="#{Title}">Title</th>
+            <th th:text="#{ShortD}">Short Description</th>
+            <th th:text="#{Category}">Category</th>
+            <th th:text="#{Actions}">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -40,7 +40,7 @@
                 <span class="badge badge-success rounded-pill d-inline" th:text="${recipe.category}"></span>
             </td>
             <td>
-                <a class="btn btn-info" th:href="@{/mainPage/{id}(id=${recipe.id})}">View</a>
+                <a class="btn btn-info" th:href="@{/mainPage/{id}(id=${recipe.id})}" th:text="#{View}">View</a>
                 <a class="btn btn-info" th:href="@{/mainPage/recipes/delete/{id}(id=${recipe.id})}" th:text="#{Delete}">Delete</a>
                 <a th:href="@{/mainPage/recipes/showUpdateForm(id=${recipe.id})}" class="btn btn-info" th:text="#{Edit}">Edit</a>
             </td>
@@ -56,7 +56,7 @@
     </div>
     </nav>
 
-    <a th:href="@{/mainPage/form}" style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;">Add new recipe</a>
+    <a th:href="@{/mainPage/form}" style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;" th:text="#{AddNew}">Add new recipe</a>
 </main>
 
 <footer th:insert="~{fragment/fragment.html :: footer}"> </footer>

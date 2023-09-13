@@ -24,37 +24,37 @@
     <form th:action="@{/mainPage/recipes/saveUpdatedRecipe}" th:object="${recipeee}" method="POST"  enctype="multipart/form-data">
 
         <div class="form-group">
-            <label for="title">Recipe Title</label>
+            <label for="title" th:text="#{RecipeTitle}">Recipe Title</label>
             <input type="text" class="form-control" id="title" th:field="*{title}" placeholder="Some New Title" required>
         </div>
         <div class="form-group">
-            <label for="short_Description">Recipe Description</label>
+            <label for="short_Description" th:text="#{RecipeDesc}">Recipe Description</label>
             <textarea class="form-control" id="short_Description" rows="3" th:field="*{shortDescription}" required></textarea>
         </div>
         <div class="form-group">
-            <label for="ingredients">Ingredients</label>
+            <label for="ingredients" th:text="#{Ingredients}">Ingredients</label>
             <textarea class="form-control" id="ingredients" rows="3" th:field="*{ingriedients}" required></textarea>
         </div>
         <div class="form-group">
-            <label for="category">Category</label>
+            <label for="category" th:text="#{Category}">Category</label>
             <select class="form-control" id="category" th:field="*{category}">
                 <option th:each="categoryOpt: ${T(blog_project.entities.Category).values()}"
                         th:value="${categoryOpt}" th:text="${categoryOpt}" ></option>
             </select>
         </div>
         <div class="form-group">
-            <label for="recipe">All Recipe</label>
+            <label for="recipe" th:text="#{AllText}">All Recipe</label>
             <textarea class="form-control" id="recipe" rows="10" th:field="*{recipeText}" required></textarea>
         </div>
         <div class="form-group">
-            <label class="form-label" for="customFile">Recipe Image</label>
+            <label class="form-label" for="customFile" th:text="#{Image}">Recipe Image</label>
             <input type="file" class="form-control" id="customFile" name = "prdimage" accept="image/*" required/>
         </div>
         <br><br>
-        <button id="submit_btn" type="submit" class="btn btn-primary col-2">Save</button>
+        <button id="submit_btn" type="submit" class="btn btn-primary col-2" th:text="#{Save}">Save</button>
         <input type="hidden" th:field="*{id}" />
     </form>
-    <a th:href="@{/mainPage/recipes}"  style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;">Go back to recipe list</a>
+    <a th:href="@{/mainPage/recipes}"  style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;" th:text="#{GoBack}">Go back to recipe list</a>
 </main>
 
 <footer th:insert="~{fragment/fragment.html :: footer}"> </footer>
