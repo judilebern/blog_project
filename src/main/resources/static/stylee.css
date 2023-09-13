@@ -141,3 +141,25 @@ footer > section > div {
     margin-left: 10px;
     margin-right: 10px;
 }
+
+.apply-custom-button {
+    margin-left: 20px;
+    padding-right: 25px;
+    padding-left: 25px;
+    top:50%;
+    background-color: #082108;
+    color: #fff;
+    border:none;
+    border-radius:10px;
+    box-shadow: 0px 0px 2px 2px rgb(0,0,0);
+}
+
+.apply-custom-button-div {
+    text-align: center;
+    font-family: 'Caveat', cursive;
+}
+
+.custom-control-label {
+    font-family: 'Caveat', cursive;
+    font-size: 1em;
+}

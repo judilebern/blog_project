@@ -159,6 +159,7 @@ public class MainController {
     @GetMapping("/filterByCategory")
     public String filterByCategory(@RequestParam("categoryOpt") Category category, Model model) {
         List<Recipe> recipes = recipeService.filterByCategory(category);
+        model.addAttribute("categorySelected", category.name());
         model.addAttribute("recipes", recipes);
         return "index";
     }
