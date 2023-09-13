@@ -129,3 +129,15 @@ footer > section > div {
     border-radius:10px;
     box-shadow: 0px 0px 2px 2px rgb(0,0,0);
 }
+
+
+.my-custom-filter-group {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.custom-radio {
+    margin-left: 10px;
+    margin-right: 10px;
+}

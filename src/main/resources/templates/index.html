@@ -63,14 +63,22 @@
     <hr class="line">
 
     <form th:action="@{/mainPage/filterByCategory}" method="get">
-    <select class="form-control" id="category" name="categoryOpt">
-        <option th:each="categoryOpt: ${T(blog_project.entities.Category).values()}"
-                th:value="${categoryOpt}" th:text="${categoryOpt}" ></option>
-    </select>
+       <div class="form-group my-custom-filter-group" >
+           <div th:each="categoryOpt: ${T(blog_project.entities.Category).values()}">
+               <div class="custom-control custom-radio radio-inline custom-control-inline">
+                   <input type="radio" th:value="${categoryOpt}" th:id="${categoryOpt}" name="categoryOpt" class="custom-control-input">
+                   <label class="custom-control-label" th:for="${categoryOpt}"  th:text="${categoryOpt}">model</label>
+               </div>
+           </div>
+       </div>
         <button type="submit">Apply</button>
     </form>
 
+
     <hr class="line">
+    <div>Rodomos kategorijos:
+        <p th:each="recipe, i: *{recipes}" th:text="${recipe.category}"></p>
+    </div>
     <hr class="line">
 
 <section class="p-4 text-center mb-4 w-100">
