@@ -23,16 +23,15 @@
     <hr class="line">
     <hr class="line">
     <form th:action="@{/mainPage/recipes/saveComment}" th:object="${recipeee}" method="post">
+        <p th:text="#{WriteComment}">You can write your comment here:</p>
         <p>
-            <label>You can write your comment here:
                 <input type="hidden" th:field="*{id}" id="id">
                 <input type="text" th:field="*{text}" />
                 <input type="hidden" th:field="*{recipe.id}" id="recipe">
                 <input type="hidden" th:field="*{dateTime}" id="dateTime">
-            </label>
         </p>
         <p>
-            <input type="submit" id="submit_btn" value="Submit" />
+            <button type="submit" id="submit_btn" value="Submit" th:text="#{Submit}"></button>
         </p>
     </form>
 
