@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+
 </head>
 <body>
-
+<!--<script type="text/javascript"  th:src="@{/scripts.js}" defer></script>-->
 <nav th:fragment="nav"  class="py-2 custom-color">
   <div class="container d-flex flex-wrap">
     <ul class="nav me-auto">
@@ -15,20 +16,34 @@
       <li class="nav-item"><a th:href="@{/mainPage/recipes}" class="nav-link custom-font-color px-2">Imported Recipes</a></li>
     </ul>
     <ul class="nav">
-      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">Login</a></li>
-      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2">Sign up</a></li>
+      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2" th:text="#{Login}">Login</a></li>
+      <li class="nav-item"><a href="#" class="nav-link custom-font-color px-2" th:text="#{Signup}">Sign up</a></li>
+    </ul>
+  </div>
+
+  <div th:fragment="languageSelector" class="dropdown">
+    <button th:text="#{lang.options}" class="btn btn-dark dropdown-toggle me-2" type="button" id="langSelectBtn" data-bs-toggle="dropdown" aria-expanded="false" >
+      EN
+    </button>
+    <ul class="dropdown-menu dropdown-menu-primary" aria-labelledby="langSelectBtn">
+      <li><a class="dropdown-item" onclick="setLanguage('fr')" th:text="#{lang.fr}"></a></li>
+      <li><a class="dropdown-item" onclick="setLanguage('en')" th:text="#{lang.en}"></a></li>
     </ul>
   </div>
 </nav>
 
 <header th:fragment="header" class="py-3 mb-4 border-bottom">
+
+  <script type="text/javascript" th:src="@{/js/scripts.js}" defer></script>
+
+
   <div class="container align-items-center d-flex flex-wrap justify-content-center">
     <a th:href="@{/mainPage}" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
       <svg class="bi me-2" width="40" height="40"><use xlink:href="#bootstrap"></use></svg>
       <span class="my-class">BLUE SKARLET SKY RECIPES</span>
     </a>
     <form th:action="@{/mainPage/filterByTitle}" method="get" class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-      <input type="search" class="form-control" placeholder="Search..." name="keyword" th:value="${keyword}" aria-label="Search">
+      <input type="search" class="form-control" th:placeholder="#{Search}" name="keyword" th:value="${keyword}" aria-label="Search">
     </form>
   </div>
 </header>
