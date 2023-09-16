@@ -67,12 +67,13 @@ public class MainController {
         return "recipe";
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+
     @GetMapping("/form")
-    public String getForm(@AuthenticationPrincipal User user, Model model) {
+    public String getForm(Model model) {
         model.addAttribute("newRecipe", new Recipe());
         return "form";
     }
+
 
     @PostMapping("/form")
     public String processForm(@RequestParam("prdimage") MultipartFile file, @ModelAttribute Recipe newRecipe) throws IOException {
@@ -83,10 +84,12 @@ public class MainController {
         return "redirect:/mainPage/recipes";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping("/{id}")
-    public String addCommentToRecipe(@PathVariable Long id, Comment comment) {
+    public String addCommentToRecipe(@AuthenticationPrincipal User user, @PathVariable Long id, Comment comment) {
         Recipe recipe = recipeService.getRecipeById(id);
         comment.setRecipe(recipe);
+        comment.setCreatedBy(user);
         comment.setDateTime(LocalDateTime.now());
         commentService.addCommentToRecipe(comment);
         return "redirect:/mainPage/" + id;

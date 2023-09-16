@@ -29,7 +29,8 @@ public class WebSecurityConfig {
 
 		http.authorizeRequests()
 				.antMatchers("/registration/**").permitAll()
-				.antMatchers("/mainPage/**").permitAll()
+				.antMatchers("/mainPage").permitAll()
+				.antMatchers("/form").hasRole("ADMIN")
 				.antMatchers(staticFiles).permitAll()
 				.anyRequest().authenticated()
 				.and()

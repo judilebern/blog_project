@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -21,7 +21,7 @@
 
 <main>
 
-    <form th:action="@{/mainPage/form}" method="post" th:object="${newRecipe}" enctype="multipart/form-data">
+    <form sec:authorize="hasAuthority('ADMIN')" th:action="@{/mainPage/form}" method="post" th:object="${newRecipe}" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title" th:text="#{RecipeTitle}">Recipe Title</label>
             <input type="text" class="form-control" id="title" th:field="*{title}" placeholder="Some New Title" required>
