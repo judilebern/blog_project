@@ -27,34 +27,20 @@ public class WebSecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception, RuntimeException {
 
-
-		http.authorizeHttpRequests((authz) -> {
-					try {
-						authz
-								.requestMatchers("/registration/**").permitAll()
-								.requestMatchers("/custom/**").permitAll()
-								.requestMatchers(staticFiles).permitAll()
-								.requestMatchers("/mainPage/**").permitAll()
-								.anyRequest()
-								.authenticated()
-								.and()
-								.formLogin()
-/*								.loginPage("/login")*/
-								.defaultSuccessUrl("/mainPage", true)
-								.and()
-								.logout()
-								.permitAll();
-/*								.loginPage("/custom-login")// Specify the custom login page URL
-								.permitAll();*/
-								/*.and()
-								.logout()
-								.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-								.logoutUrl("/login");*/
-					} catch (Exception e) {
-						throw new RuntimeException(e);
-					}
-				}
-		);
+		http.authorizeRequests()
+				.antMatchers("/registration/**").permitAll()
+				.antMatchers("/mainPage/**").permitAll()
+				.antMatchers(staticFiles).permitAll()
+				.anyRequest().authenticated()
+				.and()
+				.formLogin()
+				.permitAll()
+				.defaultSuccessUrl("/mainPage")
+				.and()
+				.logout()
+				.permitAll()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/login");
 
 		http.csrf().disable();
 		http.headers().frameOptions().disable();
@@ -64,6 +50,7 @@ public class WebSecurityConfig {
 	@Autowired
 	public void configure(AuthenticationManagerBuilder auth, PasswordEncoder passwordEncoder) throws Exception {
 		auth.userDetailsService(userService)
-				.passwordEncoder(NoOpPasswordEncoder.getInstance()); //.passwordEncoder(passwordEncoder);
+				.passwordEncoder(NoOpPasswordEncoder.getInstance());
+				/*.passwordEncoder(passwordEncoder);*/
 	}
 }

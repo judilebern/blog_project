@@ -3,14 +3,19 @@ package blog_project.controller;
 import blog_project.entities.Category;
 import blog_project.entities.Comment;
 import blog_project.entities.Recipe;
+import blog_project.entities.User;
 import blog_project.service.CommentService;
 import blog_project.service.RecipeService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -62,8 +67,9 @@ public class MainController {
         return "recipe";
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/form")
-    public String getForm(Model model) {
+    public String getForm(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("newRecipe", new Recipe());
         return "form";
     }

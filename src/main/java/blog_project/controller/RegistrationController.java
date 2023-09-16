@@ -3,7 +3,7 @@ package blog_project.controller;
 
 import blog_project.entities.User;
 import blog_project.service.UserService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,5 +33,10 @@ public class RegistrationController {
         }
 
         return "redirect:/custom-login";
+    }
+
+    @GetMapping("/custom-login")
+    public String customLogin() {
+        return "custom-login"; // Custom login page
     }
 }
