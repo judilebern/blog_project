@@ -25,16 +25,39 @@ public class WebSecurityConfig {
 
 
 	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception, RuntimeException {
 
 
-		http.authorizeHttpRequests((authz) -> authz
-				.requestMatchers(staticFiles).permitAll()
-				.requestMatchers("/mainPage/**").permitAll()
-				.anyRequest()
-				.authenticated()
+		http.authorizeHttpRequests((authz) -> {
+					try {
+						authz
+								.requestMatchers("/registration/**").permitAll()
+								.requestMatchers("/custom/**").permitAll()
+								.requestMatchers(staticFiles).permitAll()
+								.requestMatchers("/mainPage/**").permitAll()
+								.anyRequest()
+								.authenticated()
+								.and()
+								.formLogin()
+/*								.loginPage("/login")*/
+								.defaultSuccessUrl("/mainPage", true)
+								.and()
+								.logout()
+								.permitAll();
+/*								.loginPage("/custom-login")// Specify the custom login page URL
+								.permitAll();*/
+								/*.and()
+								.logout()
+								.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+								.logoutUrl("/login");*/
+					} catch (Exception e) {
+						throw new RuntimeException(e);
+					}
+				}
 		);
 
+		http.csrf().disable();
+		http.headers().frameOptions().disable();
 
 		return http.build();
 	}
