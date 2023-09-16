@@ -27,4 +27,7 @@ public class Comment {
     @JoinColumn(name="recipe_id", nullable=false)
     private Recipe recipe;
 
+    @ManyToOne
+    private User createdBy;
+
 }
