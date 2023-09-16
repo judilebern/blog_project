@@ -15,9 +15,12 @@
       <li class="nav-item"><a th:href="@{/mainPage/form}" class="nav-link custom-font-color px-2" th:text="#{Form}">Form</a></li>
       <li class="nav-item"><a th:href="@{/mainPage/recipes}" class="nav-link custom-font-color px-2" th:text="#{RecipesM}">Imported Recipes</a></li>
     </ul>
-    <ul class="nav">
+    <ul class="nav" sec:authorize="isAnonymous()">
       <li class="nav-item"><a th:href="@{/login}" class="nav-link custom-font-color px-2" th:text="#{Login}">Login</a></li>
       <li class="nav-item"><a th:href="@{/registration}" class="nav-link custom-font-color px-2" th:text="#{Signup}">Sign up</a></li>
+    </ul>
+    <ul class="nav" sec:authorize="isAuthenticated()">
+      <li class="nav-item"><a th:href="@{/logout}" th:text="#{LogOut}">Log Out</a></li>
     </ul>
   </div>
 
