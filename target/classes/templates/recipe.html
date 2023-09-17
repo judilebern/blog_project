@@ -59,8 +59,11 @@
             <p id="date" th:text="${#temporals.format(comment.dateTime, 'yyyy-MM-dd HH:mm:ss')}"></p>
         </div>
 
-        <div class="User">
-            <p id="pName" th:text="${comment?.createdBy?.username}"></p>
+        <div class="user-name-comment">
+            <hr>
+            <div class="user-comment" th:text="#{CommentUser}"></div>
+            <div class="user-comment" id="pName" th:text="${comment?.createdBy?.username}"></div>
+            <hr>
         </div>
 
         <div class="update-date-text">

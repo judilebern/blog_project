@@ -157,6 +157,7 @@ footer > section > div {
 .apply-custom-button-div {
     text-align: center;
     font-family: 'Caveat', cursive;
+    padding-top: 10px;
 }
 
 .custom-control-label {

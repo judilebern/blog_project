@@ -157,9 +157,19 @@ footer > section > div {
 .apply-custom-button-div {
     text-align: center;
     font-family: 'Caveat', cursive;
+    padding-top: 10px;
 }
 
 .custom-control-label {
     font-family: 'Caveat', cursive;
     font-size: 1em;
+}
+
+.user-logged {
+    display: inline-block; color: whitesmoke;
+}
+
+.log-class-section{
+    text-align: right;
+    padding-right: 10px;
 }
