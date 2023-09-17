@@ -2,7 +2,6 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
-
 </head>
 <body>
 <!--<script type="text/javascript"  th:src="@{/scripts.js}" defer></script>-->
@@ -19,22 +18,28 @@
       <li class="nav-item"><a th:href="@{/login}" class="nav-link custom-font-color px-2" th:text="#{Login}">Login</a></li>
       <li class="nav-item"><a th:href="@{/registration}" class="nav-link custom-font-color px-2" th:text="#{Signup}">Sign up</a></li>
     </ul>
-    <ul class="nav" sec:authorize="isAuthenticated()">
-      <li sec:authentication="principal.username"></li>
-      <li class="nav-item"><a class="nav-link custom-font-color px-2"  th:href="@{/logout}" th:text="#{LogOut}">Log Out</a></li>
+    <ul class="nav" style="align-items: center">
+      <li>
+        <div th:fragment="languageSelector" class="dropdown">
+          <button th:text="#{lang.options}" class="btn btn-dark dropdown-toggle me-2" type="button" id="langSelectBtn" data-bs-toggle="dropdown" aria-expanded="false" >
+            EN
+          </button>
+          <ul class="dropdown-menu dropdown-menu-primary" aria-labelledby="langSelectBtn">
+            <li><a class="dropdown-item" onclick="setLanguage('fr')" th:text="#{lang.fr}"></a></li>
+            <li><a class="dropdown-item" onclick="setLanguage('en')" th:text="#{lang.en}"></a></li>
+            <li><a class="dropdown-item" onclick="setLanguage('lt')" th:text="#{lang.lt}"></a></li>
+          </ul>
+        </div>
+      </li>
+      <li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link custom-font-color px-2"  th:href="@{/logout}" th:text="#{LogOut}">Log Out</a></li>
     </ul>
   </div>
 
-  <div th:fragment="languageSelector" class="dropdown">
-    <button th:text="#{lang.options}" class="btn btn-dark dropdown-toggle me-2" type="button" id="langSelectBtn" data-bs-toggle="dropdown" aria-expanded="false" >
-      EN
-    </button>
-    <ul class="dropdown-menu dropdown-menu-primary" aria-labelledby="langSelectBtn">
-      <li><a class="dropdown-item" onclick="setLanguage('fr')" th:text="#{lang.fr}"></a></li>
-      <li><a class="dropdown-item" onclick="setLanguage('en')" th:text="#{lang.en}"></a></li>
-      <li><a class="dropdown-item" onclick="setLanguage('lt')" th:text="#{lang.lt}"></a></li>
-    </ul>
-  </div>
+  <section sec:authorize="isAuthenticated()" class="log-class-section">
+  <div class="user-logged" sec:authorize="isAuthenticated()" th:text="#{LoggedInAs}">You Logged in ass</div>
+  <div class="user-logged" sec:authentication="principal.username"></div>
+  </section>
+
 </nav>
 
 <header th:fragment="header" class="py-3 mb-4 border-bottom">

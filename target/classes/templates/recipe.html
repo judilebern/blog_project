@@ -42,7 +42,7 @@
     <hr class="line">
     <h4 th:text="#{Comments}">Comments</h4>
 
-    <div sec:authorize="hasAnyAuthority('USER', 'ADMIN')"  class = "comments-div" th:each="comment : ${recip.comments}">
+    <div class = "comments-div" th:each="comment : ${recip.comments}">
         <div class="Delete">
             <a class="btn btn-info" id="delete" th:href="@{/mainPage/recipes/deleteComment/{id}(id=${comment.id})}" th:text="#{Delete}">Delete</a>
         </div>
