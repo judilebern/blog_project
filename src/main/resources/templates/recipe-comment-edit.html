@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>VERY GOOD BLOG</title>
@@ -19,10 +19,11 @@
 <header th:insert="~{fragment/fragment.html :: header}"></header>
 
 <main>
+    <div sec:authorize="isAnonymous()" style="color: whitesmoke; text-align: center;  font-size: 3em;" th:text="#{DoestExistA}">This page don't exists</div>
 
     <hr class="line">
     <hr class="line">
-    <form th:action="@{/mainPage/recipes/saveComment}" th:object="${recipeee}" method="post">
+    <form  sec:authorize="isAuthenticated()"  th:action="@{/mainPage/recipes/saveComment}" th:object="${recipeee}" method="post">
         <p th:text="#{WriteComment}">You can write your comment here:</p>
         <p>
                 <input type="hidden" th:field="*{id}" id="id">

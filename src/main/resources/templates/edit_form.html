@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -20,8 +20,10 @@
 <header th:insert="~{fragment/fragment.html :: header}"></header>
 
 <main>
+    <div sec:authorize="isAnonymous()" style="color: whitesmoke; text-align: center;  font-size: 3em;" th:text="#{DoestExistA}">This page don't exists</div>
+    <div sec:authorize="hasAuthority('USER')" style="color: whitesmoke; text-align: center;  font-size: 3em;" th:text="#{DoestExistU}">This page is only for admin</div>
 
-    <form th:action="@{/mainPage/recipes/saveUpdatedRecipe}" th:object="${recipeee}" method="POST"  enctype="multipart/form-data">
+    <form sec:authorize="hasAuthority('ADMIN')" th:action="@{/mainPage/recipes/saveUpdatedRecipe}" th:object="${recipeee}" method="POST"  enctype="multipart/form-data">
 
         <div class="form-group">
             <label for="title" th:text="#{RecipeTitle}">Recipe Title</label>
@@ -54,7 +56,7 @@
         <button id="submit_btn" type="submit" class="btn btn-primary col-2" th:text="#{Save}">Save</button>
         <input type="hidden" th:field="*{id}" />
     </form>
-    <a th:href="@{/mainPage/recipes}"  style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;" th:text="#{GoBack}">Go back to recipe list</a>
+    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/mainPage/recipes}"  style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;" th:text="#{GoBack}">Go back to recipe list</a>
 </main>
 
 <footer th:insert="~{fragment/fragment.html :: footer}"> </footer>

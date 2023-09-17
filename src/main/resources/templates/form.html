@@ -20,7 +20,8 @@
 <header th:insert="~{fragment/fragment.html :: header}"></header>
 
 <main>
-
+    <div sec:authorize="isAnonymous()" style="color: whitesmoke; text-align: center;  font-size: 3em;" th:text="#{DoestExistA}">This page don't exists</div>
+    <div sec:authorize="hasAuthority('USER')" style="color: whitesmoke; text-align: center;  font-size: 3em;" th:text="#{DoestExistU}">This page is only for admin</div>
     <form sec:authorize="hasAuthority('ADMIN')" th:action="@{/mainPage/form}" method="post" th:object="${newRecipe}" enctype="multipart/form-data">
         <div class="form-group">
             <label for="title" th:text="#{RecipeTitle}">Recipe Title</label>
@@ -56,7 +57,7 @@
         </div>
 
     </form>
-    <a th:href="@{/mainPage/recipes}"  style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;" th:text="#{GoBack}">Go back to recipe list</a>
+    <a sec:authorize="hasAuthority('ADMIN')" th:href="@{/mainPage/recipes}"  style="color: whitesmoke;font-family: 'Caveat', cursive; font-size: 1.5em;" th:text="#{GoBack}">Go back to recipe list</a>
 </main>
 
 <footer th:insert="~{fragment/fragment.html :: footer}"> </footer>
