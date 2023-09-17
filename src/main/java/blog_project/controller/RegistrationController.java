@@ -32,11 +32,7 @@ public class RegistrationController {
             return "registration";
         }
 
-        return "redirect:/custom-login";
+        return "redirect:/login";
     }
 
-    @GetMapping("/custom-login")
-    public String customLogin() {
-        return "custom-login"; // Custom login page
-    }
 }
