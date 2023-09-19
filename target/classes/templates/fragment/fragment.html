@@ -35,7 +35,7 @@
     </ul>
   </div>
 
-  <section sec:authorize="isAuthenticated()" class="log-class-section">
+  <section style="max-width: 1320px;vertical-align: middle; margin-right: auto; margin-left: auto;" sec:authorize="isAuthenticated()" class="log-class-section">
   <div class="user-logged" sec:authorize="isAuthenticated()" th:text="#{LoggedInAs}">You Logged in ass</div>
   <div class="user-logged" sec:authentication="principal.username"></div>
   </section>

@@ -44,11 +44,11 @@
 
     <div class = "comments-div" th:each="comment : ${recip.comments}">
         <div class="Delete">
-            <a class="btn btn-info" id="delete" th:href="@{/mainPage/recipes/deleteComment/{id}(id=${comment.id})}" th:text="#{Delete}">Delete</a>
+            <a class="btn btn-info" id="delete" th:if="${comment?.createdBy?.username} == ${#authentication.name} or ${isAdmin}" th:href="@{/mainPage/recipes/deleteComment/{id}(id=${comment.id})}" th:text="#{Delete}">Delete</a>
         </div>
 
         <div class="Edit">
-            <a th:href="@{/mainPage/recipes/commentEdit(id=${comment.id})}" id="edit" class="btn btn-info" th:text="#{Edit}">Edit</a>
+            <a th:if="${comment?.createdBy?.username} == ${#authentication.name}" th:href="@{/mainPage/recipes/commentEdit(id=${comment.id})}" id="edit" class="btn btn-info" th:text="#{Edit}">Edit</a>
         </div>
 
         <div class="startdate-text">

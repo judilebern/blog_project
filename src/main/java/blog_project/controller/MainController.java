@@ -1,9 +1,6 @@
 package blog_project.controller;
 
-import blog_project.entities.Category;
-import blog_project.entities.Comment;
-import blog_project.entities.Recipe;
-import blog_project.entities.User;
+import blog_project.entities.*;
 import blog_project.service.CommentService;
 import blog_project.service.RecipeService;
 import javax.validation.Valid;
@@ -26,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -60,16 +58,18 @@ public class MainController {
     }
 
     @GetMapping("/{id}")
-    public String getRecipeById(@PathVariable Long id, Model model) {
+    public String getRecipeById(@AuthenticationPrincipal  User user, @PathVariable Long id, Model model) {
+        boolean isAdmin = Optional.ofNullable(user).map(User::getRoles).map(roles -> roles.contains(Role.ADMIN)).orElse(false);
         Recipe recipe = recipeService.getRecipeById(id);
         model.addAttribute("recip", recipe);
+        model.addAttribute("isAdmin", isAdmin);
         model.addAttribute("comment", new Comment());
         return "recipe";
     }
 
 
     @GetMapping("/form")
-    public String getForm(Model model) {
+    public String getForm(@AuthenticationPrincipal  User user, Model model) {
         model.addAttribute("newRecipe", new Recipe());
         return "form";
     }
@@ -84,7 +84,7 @@ public class MainController {
         return "redirect:/mainPage/recipes";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+
     @PostMapping("/{id}")
     public String addCommentToRecipe(@AuthenticationPrincipal User user, @PathVariable Long id, Comment comment) {
         Recipe recipe = recipeService.getRecipeById(id);
