@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 <nav th:insert="~{fragment/fragment.html :: nav}"></nav>
 <header th:insert="~{fragment/fragment.html :: header}"></header>
 
@@ -44,11 +44,11 @@
 
     <div class = "comments-div" th:each="comment : ${recip.comments}">
         <div class="Delete">
-            <a class="btn btn-info" id="delete" th:href="@{/mainPage/recipes/deleteComment/{id}(id=${comment.id})}" th:text="#{Delete}">Delete</a>
+            <a class="btn btn-info" id="delete" th:if="${comment?.createdBy?.username} == ${#authentication.name} or ${#strings.contains(#authentication.principal.authorities, 'ADMIN')}" th:href="@{/mainPage/recipes/deleteComment/{id}(id=${comment.id})}" th:text="#{Delete}">Delete</a>
         </div>
 
         <div class="Edit">
-            <a th:href="@{/mainPage/recipes/commentEdit(id=${comment.id})}" id="edit" class="btn btn-info" th:text="#{Edit}">Edit</a>
+            <a th:href="@{/mainPage/recipes/commentEdit(id=${comment.id})}" th:if="${comment?.createdBy?.username} == ${#authentication.name}" id="edit" class="btn btn-info" th:text="#{Edit}">Edit</a>
         </div>
 
         <div class="startdate-text">

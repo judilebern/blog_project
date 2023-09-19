@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 </head>
 <body>
-<!--<script type="text/javascript"  th:src="@{/scripts.js}" defer></script>-->
+
 <nav th:fragment="nav"  class="py-2 custom-color">
   <div class="container d-flex flex-wrap">
     <ul class="nav me-auto">
@@ -35,11 +35,10 @@
     </ul>
   </div>
 
-  <section sec:authorize="isAuthenticated()" class="log-class-section">
-  <div class="user-logged" sec:authorize="isAuthenticated()" th:text="#{LoggedInAs}">You Logged in ass</div>
-  <div class="user-logged" sec:authentication="principal.username"></div>
+  <section style="max-width: 1320px; vertical-align: middle; margin-right: auto; margin-left: auto;" sec:authorize="isAuthenticated()" class="log-class-section">
+    <div class="user-logged" sec:authorize="isAuthenticated()" th:text="#{LoggedInAs}">You Logged in ass</div>
+    <div class="user-logged" sec:authentication="principal.username"></div>
   </section>
-
 </nav>
 
 <header th:fragment="header" class="py-3 mb-4 border-bottom">
@@ -59,7 +58,7 @@
 </header>
 
 <!-- Footer -->
-<footer th:fragment="footer"  class="text-center text-lg-start custom-footer-color text-footer-color">
+<footer th:fragment="footer"  class="mt-auto text-center text-lg-start custom-footer-color text-footer-color">
 
   <!-- Section: Links  -->
   <section class="">

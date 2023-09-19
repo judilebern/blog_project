@@ -75,6 +75,7 @@ public class MainController {
     }
 
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/form")
     public String processForm(@RequestParam("prdimage") MultipartFile file, @ModelAttribute Recipe newRecipe) throws IOException {
         String image = Base64.encodeBase64String(file.getBytes());
