@@ -36,19 +36,19 @@ public class WebSecurityConfig {
 
 		http.authorizeRequests()
 				.antMatchers("/registration").permitAll()
-				.antMatchers("/login").permitAll()
 				.antMatchers("/mainPage/**").permitAll()
 				.antMatchers(staticFiles).permitAll()
 				.anyRequest().authenticated()
 				.and()
 				.formLogin()
+				.loginPage("/login")
 				.permitAll()
 				.defaultSuccessUrl("/mainPage")
 				.and()
 				.logout()
 				.permitAll()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-				.logoutSuccessUrl("/login");
+				.logoutSuccessUrl("/mainPage");
 
 		http.csrf().disable();
 		http.headers().frameOptions().disable();

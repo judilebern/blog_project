@@ -26,11 +26,10 @@
 </div>
 
 <h3 class="registration-form-title" th:text="#{RegistrationF}"></h3>
-<form th:action="@{/registration}" th:object="${user}"
-      method="post" class="form custom-registration-form">
+<form th:action="@{/registration}" th:object="${user}" method="post" class="form custom-registration-form">
   <section th:text="${usernameError}"></section>
   <div>
-    <label for="username">User Name:</label> <input type="text"
+    <label for="username">Username</label> <input type="text"
                                                     th:field="*{username}" id="username"
                                                     placeholder="Enter username">
     <ul>
@@ -39,17 +38,17 @@
     </ul>
   </div>
   <div>
-    <label for="password">Password:</label>
-    <i class="fa-solid fa-key fa-beat-fade"></i>
-    <input type="text"
+    <label for="password">Password</label>
+    <input type="password" name="password"
            th:field="*{password}" id="password" placeholder="Enter password">
     <ul>
       <li th:each="err : ${#fields.errors('password')}" th:text="${err}"
           class="error"/>
     </ul>
   </div>
+  </div>
 
-  <div><input type="submit" value="Register"/></div>
+  <div><input class="register-button-submit" type="submit" value="Register"/></div>
 </form>
 
 <footer th:replace="~{fragment/fragment.html :: footer}"> </footer>
