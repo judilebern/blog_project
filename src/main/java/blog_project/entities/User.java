@@ -7,10 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @NoArgsConstructor
@@ -58,6 +55,10 @@ public class User implements UserDetails {
         return isActive();
     }
 
+
+    public static boolean isAdmin(User user) {
+        return Optional.ofNullable(user).map(User::getRoles).map(roles -> roles.contains(Role.ADMIN)).orElse(false);
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

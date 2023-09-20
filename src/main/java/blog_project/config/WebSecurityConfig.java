@@ -14,6 +14,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+@EnableGlobalMethodSecurity(
+		prePostEnabled = true,
+		securedEnabled = true,
+		jsr250Enabled = true)
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig {
@@ -33,12 +37,7 @@ public class WebSecurityConfig {
 		http.authorizeRequests()
 				.antMatchers("/registration").permitAll()
 				.antMatchers("/login").permitAll()
-				.antMatchers("/mainPage").permitAll()
-				.regexMatchers("/mainPage/\\d+").permitAll()
-				.antMatchers("mainPage/form").hasRole("ADMIN")
-/*				.antMatchers("/mainPage/form").hasRole("ADMIN")
-*//*				.antMatchers("/mainPage/form").hasRole("ADMIN")*//*
-				.antMatchers("/mainPage/recipes").hasRole("ADMIN")*/
+				.antMatchers("/mainPage/**").permitAll()
 				.antMatchers(staticFiles).permitAll()
 				.anyRequest().authenticated()
 				.and()
