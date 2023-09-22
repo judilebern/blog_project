@@ -1,0 +1,96 @@
+spring:
+  profiles:
+    group:
+      default:
+        - default
+        - test
+        - h2
+      postgresql:
+        - default
+        - test
+        - postgresql
+      prod:
+        - default
+        - postgresql
+
+
+# Default (safe by default) properties
+---
+spring:
+  config:
+    activate:
+      on-profile: default
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+# Disable whitelabel error pages
+server:
+  error:
+    whitelabel:
+      enabled: false
+
+
+# Properties that should suite any test profile
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+
+# Properties that are relevant when running with h2
+---
+spring:
+  config:
+    activate:
+      on-profile: h2
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+  datasource:
+    url: "jdbc:h2:mem:blog_db"
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
+
+# Properties that are relevant when running with mysql
+---
+spring:
+  config:
+    activate:
+      on-profile: postgresql
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  datasource:
+    url: jdbc:postgresql://localhost:5455/blog_db
+    username: postgres
+    password: password
