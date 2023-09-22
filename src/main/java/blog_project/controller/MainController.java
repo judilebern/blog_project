@@ -35,7 +35,7 @@ import java.util.stream.IntStream;
 public class MainController {
 
     private RecipeService recipeService;
-    private final CommentService commentService;
+    private CommentService commentService;
 
 
     public MainController(RecipeService recipeService, CommentService commentService) {
