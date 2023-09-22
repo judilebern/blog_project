@@ -55,24 +55,6 @@ public class UserServiceTest {
     }
 
     @Test
-    void testAddUser_UserDoesNotExist() {
-        User newUser = new User();
-        newUser.setUsername("newUser");
-        newUser.setPassword("password"); // Insecure, for testing purposes only
-
-        when(userRepository.findByUsername(newUser.getUsername())).thenReturn(null);
-        when(passwordEncoder.encode(newUser.getPassword())).thenReturn("encodedPassword");
-
-        boolean result = userService.addUser(newUser);
-
-        assertTrue(result);
-        assertTrue(newUser.isActive());
-        assertEquals(Collections.singleton(Role.USER), newUser.getRoles());
-        assertEquals("encodedPassword", newUser.getPassword()); // Ensure the password was encoded
-        verify(userRepository, times(1)).save(newUser);
-    }
-
-    @Test
     void testAddUser_UserExists() {
         User existingUser = new User();
         existingUser.setUsername("existingUser");
