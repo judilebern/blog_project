@@ -62,6 +62,9 @@ public class MainController {
     @GetMapping("/{id}")
     public String getRecipeById(@AuthenticationPrincipal  User user, @PathVariable Long id, Model model) {
         Recipe recipe = recipeService.getRecipeById(id);
+        if (recipe == null) {
+            throw new AccessDeniedException("Access denied");
+        }
         model.addAttribute("recip", recipe);
         model.addAttribute("isAdmin", User.isAdmin(user));
         model.addAttribute("comment", new Comment());

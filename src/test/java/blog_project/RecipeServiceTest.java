@@ -11,9 +11,10 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class RecipeServiceTest {
@@ -38,6 +39,15 @@ public class RecipeServiceTest {
         Recipe result = recipeService.getRecipeById(id);
 
         assertEquals(expectedRecipe, result);
+    }
+
+    @Test
+    void testGetRecipeByNonExistantId() {
+        Long id = 1L;
+        when(recipeRepository.findById(id)).thenReturn(Optional.empty());
+
+        assertThrows(NoSuchElementException.class, () -> recipeService.getRecipeById(id));
+
     }
 
     @Test

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public class RecipeService {
-    private RecipeRepository recipeRepository;
+    private final RecipeRepository recipeRepository;
     public RecipeService(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
     }
